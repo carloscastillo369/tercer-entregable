@@ -1,3 +1,11 @@
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+input[type=number] { -moz-appearance:textfield; }
+
 .formulario-content, .lista-usuarios-content {
     width: 800px;
     margin: 0 auto;
@@ -14,11 +22,18 @@
     justify-content: flex-end;
 }
 
-.active {
+.nav-link {
     border-color: black !important;
-    border-bottom: 1px solid white !important;
+    border-bottom: 1px solid transparent !important;
+    background-color: #0d6efd;
+    color: #fff;
+    margin-left: 5px;
 }
 
-.btn {
-    margin-right: 6px;
+.nav-link:hover {
+    background-color: #6610f2;
+}
+
+.cursor {
+    cursor: pointer;
 }

@@ -1,23 +1,23 @@
 <div class="nav-tabs-content">
     <ul class="nav nav-tabs">
         <li class="nav-item">
-          <a [ngClass]="{'disabled active':show==true}" class="nav-link" (click)="show=!show">Formulario</a>
+          <a [ngClass]="{'disabled active':show==true}" class="nav-link cursor" (click)="show=!show">Formulario</a>
         </li>
         <li class="nav-item">
-          <a [ngClass]="{'disabled active':show==false}" class="nav-link" (click)="show=!show">Usuarios</a>
+          <a [ngClass]="{'disabled active':show==false}" class="nav-link cursor" (click)="show=!show">Usuarios</a>
         </li>
     </ul>
 </div>
 
-
 <div [hidden]="!show" class="formulario-content">
     <p class="text-center fs-2 fw-bold mb-4">REGISTRO DE USUARIOS</p>
-    <form class="row g-3">
+    <form [formGroup]="formularioRegistro" class="row g-3">
         <div class="col-md-4">
             <label class="form-label">Nombre</label>
             <input 
                 type="text" 
                 class="form-control"
+                formControlName="name"
             >
             <div class="valid-feedback">
                 Looks good!
@@ -28,6 +28,7 @@
             <input 
                 type="text" 
                 class="form-control"
+                formControlName="lastname"
             >
             <div class="valid-feedback">
                 Looks good!
@@ -40,6 +41,7 @@
                 <input 
                     type="text" 
                     class="form-control"
+                    formControlName="username"
                 >
                 <div class="invalid-feedback">
                     Please choose a username.
@@ -51,6 +53,7 @@
             <input 
                 type="email" 
                 class="form-control"
+                formControlName="email"
             >
             <div class="invalid-feedback">
                 Please provide a valid city.
@@ -61,6 +64,7 @@
             <input 
                 type="number" 
                 class="form-control"
+                formControlName="phonenumber"
             >
             <div class="valid-feedback">
               Looks good!
@@ -71,6 +75,7 @@
                 <input 
                     class="form-check-input" 
                     type="checkbox"
+                    formControlName="checkbox"
                 >
                 <label class="form-check-label" for="invalidCheck">
                     Acepto los términos y condiciones
@@ -81,7 +86,7 @@
             </div>
         </div>
         <div class="col-12">
-            <button class="btn btn-primary" type="submit">Registrarse</button>
+            <button class="btn btn-primary" type="submit" (click)="onSaveForm()">Registrarse</button>
         </div>
     </form>
 </div>
@@ -100,14 +105,14 @@
           </tr>
         </thead>
         <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>email@example.com</td>
-                <td>923234324</td>
-              </tr>
+            <tr *ngFor="let user of users; let i=index">
+                <th scope="row">{{i+1}}</th>
+                <td class="text-lowercase">{{user.name}}</td>
+                <td class="text-lowercase">{{user.lastname}}</td>
+                <td class="text-lowercase">@{{user.username}}</td>
+                <td class="text-lowercase">{{user.email}}</td>
+                <td>{{user.phonenumber}}</td>
+            </tr>
         </tbody>
     </table>
 </div>
