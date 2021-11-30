@@ -1,0 +1,24 @@
+.formulario-content, .lista-usuarios-content {
+    width: 800px;
+    margin: 0 auto;
+    padding: 20px 50px;
+    border: 1px solid black;
+    border-radius: 10px 0px 10px 10px;
+}
+
+.nav-tabs-content {
+    margin: 0 auto;
+    margin-top: 40px;
+    width: 800px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.active {
+    border-color: black !important;
+    border-bottom: 1px solid white !important;
+}
+
+.btn {
+    margin-right: 6px;
+}
