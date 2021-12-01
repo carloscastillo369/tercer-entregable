@@ -20,6 +20,8 @@ export class RegistroUsuariosComponent implements OnInit {
   patternUser = /^[0-9a-zA-Zñ]+$/;
   patternEmail = /^[0-9a-zA-Z._-]+@[a-zA-Z]+?\.[a-zA-Z]{2,3}$/;
 
+  modal:string='modal';
+
   formularioRegistro = new FormGroup({
     name: new FormControl('',
       [
@@ -56,6 +58,10 @@ export class RegistroUsuariosComponent implements OnInit {
     checkbox: new FormControl('',[Validators.requiredTrue])
   })
 
+  isValidField (field:string){
+    return this.formularioRegistro.get(field)?.valid;
+  }
+
   isInvalidField (field:string) {
     return (
       this.formularioRegistro.get(field)?.invalid && 
@@ -70,8 +76,13 @@ export class RegistroUsuariosComponent implements OnInit {
   onSaveForm(){
     if(this.formularioRegistro.valid){
       this.users.push(this.formularioRegistro.value);
+      this.modal = '';
       this.onResetForm();  
     }
+  }
+
+  closeModal(){
+    this.modal = 'modal';
   }
 
   getErrorMessage (field:string) {

@@ -11,14 +11,14 @@
 
 <div [hidden]="!show" class="formulario-content">
     <p class="text-center fs-2 fw-bold mb-4">REGISTRO DE USUARIOS</p>
-    <form [formGroup]="formularioRegistro" class="row g-3">
+    <form [formGroup]="formularioRegistro" (submit)="onSaveForm()" class="row g-3">
         <div class="col-md-4">
             <label class="form-label">Nombres</label>
             <input 
                 type="text" 
                 class="form-control"
                 formControlName="name"
-                [class.is-valid]="!isInvalidField('name')"
+                [class.is-valid]="isValidField('name')"
                 [class.is-invalid]="isInvalidField('name')"
             >
             <div class="invalid-feedback" *ngIf="isInvalidField('name')">
@@ -31,7 +31,7 @@
                 type="text" 
                 class="form-control"
                 formControlName="lastname"
-                [class.is-valid]="!isInvalidField('lastname')"
+                [class.is-valid]="isValidField('lastname')"
                 [class.is-invalid]="isInvalidField('lastname')"
             >
             <div class="invalid-feedback" *ngIf="isInvalidField('lastname')">
@@ -46,7 +46,7 @@
                     type="text" 
                     class="form-control"
                     formControlName="username"
-                    [class.is-valid]="!isInvalidField('username')"
+                    [class.is-valid]="isValidField('username')"
                     [class.is-invalid]="isInvalidField('username')"
                 >
                 <div class="invalid-feedback" *ngIf="isInvalidField('username')">
@@ -60,7 +60,7 @@
                 type="email" 
                 class="form-control"
                 formControlName="email"
-                [class.is-valid]="!isInvalidField('email')"
+                [class.is-valid]="isValidField('email')"
                 [class.is-invalid]="isInvalidField('email')"
             >
             <div class="invalid-feedback" *ngIf="isInvalidField('email')">
@@ -73,7 +73,7 @@
                 type="number" 
                 class="form-control"
                 formControlName="phonenumber"
-                [class.is-valid]="!isInvalidField('phonenumber')"
+                [class.is-valid]="isValidField('phonenumber')"
                 [class.is-invalid]="isInvalidField('phonenumber')"
             >
             <div class="invalid-feedback" *ngIf="isInvalidField('phonenumber')">
@@ -97,12 +97,7 @@
             </div>
         </div>
         <div class="col-12">
-            <button 
-                class="btn btn-primary" 
-                type="submit" 
-                [disabled]="!formularioRegistro.valid" 
-                (click)="onSaveForm()">Registrarse
-            </button>
+            <button class="btn btn-primary" type="submit" [disabled]="formularioRegistro.invalid">Registrarse</button>
         </div>
     </form>
 </div>
@@ -131,4 +126,20 @@
             </tr>
         </tbody>
     </table>
+</div>
+
+<div [ngClass]="modal" class="modal-container" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+            <div class="modal-header">
+                <i class="bi bi-check-circle"></i>
+            </div>
+            <div class="modal-body">
+                <p class="fs-4 text-center">Usuario registrado correctamente.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="closeModal()">OK</button>
+            </div>
+      </div>
+    </div>
 </div>

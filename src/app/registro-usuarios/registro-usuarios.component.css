@@ -25,11 +25,15 @@ input[type=number] { -moz-appearance:textfield; }
 .nav-link {
     border-color: black !important;
     border-bottom: 1px solid transparent !important;
-    margin-bottom: -1.5px;
+    margin-bottom: -1.7px;
     background-color: #0d6efd;
     color: #fff;
     margin-left: 5px;
-} 
+}
+
+.active {
+    color: #000 !important;
+}
 
 .nav-link:hover {
     background-color: #105cdc;
@@ -37,4 +41,32 @@ input[type=number] { -moz-appearance:textfield; }
 
 .cursor {
     cursor: pointer;
+}
+
+.modal-container {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    padding-top: 170px;
+    top: 0;
+    z-index: 10;
+    background-color: #000000cc;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: center;
+}
+
+.modal-footer {
+    justify-content: center;
+}
+
+.bi-check-circle {
+    font-size: 80px;
+    color: #0d6efd;
+}
+
+.modal-text {
+    font-size: 20px;
 }
