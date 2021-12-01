@@ -13,25 +13,29 @@
     <p class="text-center fs-2 fw-bold mb-4">REGISTRO DE USUARIOS</p>
     <form [formGroup]="formularioRegistro" class="row g-3">
         <div class="col-md-4">
-            <label class="form-label">Nombre</label>
+            <label class="form-label">Nombres</label>
             <input 
                 type="text" 
                 class="form-control"
                 formControlName="name"
+                [class.is-valid]="!isInvalidField('name')"
+                [class.is-invalid]="isInvalidField('name')"
             >
-            <div class="valid-feedback">
-                Looks good!
+            <div class="invalid-feedback" *ngIf="isInvalidField('name')">
+                {{getErrorMessage('name')}}
             </div>
         </div>
         <div class="col-md-4">
-            <label class="form-label">Apellido</label>
+            <label class="form-label">Apellidos</label>
             <input 
                 type="text" 
                 class="form-control"
                 formControlName="lastname"
+                [class.is-valid]="!isInvalidField('lastname')"
+                [class.is-invalid]="isInvalidField('lastname')"
             >
-            <div class="valid-feedback">
-                Looks good!
+            <div class="invalid-feedback" *ngIf="isInvalidField('lastname')">
+                {{getErrorMessage('lastname')}}
             </div>
         </div>
         <div class="col-md-4">
@@ -42,9 +46,11 @@
                     type="text" 
                     class="form-control"
                     formControlName="username"
+                    [class.is-valid]="!isInvalidField('username')"
+                    [class.is-invalid]="isInvalidField('username')"
                 >
-                <div class="invalid-feedback">
-                    Please choose a username.
+                <div class="invalid-feedback" *ngIf="isInvalidField('username')">
+                    {{getErrorMessage('username')}}
                 </div>
             </div>
         </div>
@@ -54,9 +60,11 @@
                 type="email" 
                 class="form-control"
                 formControlName="email"
+                [class.is-valid]="!isInvalidField('email')"
+                [class.is-invalid]="isInvalidField('email')"
             >
-            <div class="invalid-feedback">
-                Please provide a valid city.
+            <div class="invalid-feedback" *ngIf="isInvalidField('email')">
+                {{getErrorMessage('email')}}
             </div>
         </div>
         <div class="col-md-6">
@@ -65,9 +73,11 @@
                 type="number" 
                 class="form-control"
                 formControlName="phonenumber"
+                [class.is-valid]="!isInvalidField('phonenumber')"
+                [class.is-invalid]="isInvalidField('phonenumber')"
             >
-            <div class="valid-feedback">
-              Looks good!
+            <div class="invalid-feedback" *ngIf="isInvalidField('phonenumber')">
+                {{getErrorMessage('phonenumber')}}
             </div>
         </div>
         <div class="col-12">
@@ -76,17 +86,23 @@
                     class="form-check-input" 
                     type="checkbox"
                     formControlName="checkbox"
+                    [class.is-invalid]="isInvalidField('checkbox')"
                 >
                 <label class="form-check-label" for="invalidCheck">
                     Acepto los términos y condiciones
                 </label>
-                <div class="invalid-feedback">
-                    You must agree before submitting.
+                <div class="invalid-feedback" *ngIf="isInvalidField('checkbox')">
+                    {{getErrorMessage('checkbox')}}
                 </div>
             </div>
         </div>
         <div class="col-12">
-            <button class="btn btn-primary" type="submit" (click)="onSaveForm()">Registrarse</button>
+            <button 
+                class="btn btn-primary" 
+                type="submit" 
+                [disabled]="!formularioRegistro.valid" 
+                (click)="onSaveForm()">Registrarse
+            </button>
         </div>
     </form>
 </div>
@@ -97,8 +113,8 @@
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Apellido</th>
+            <th scope="col">Nombres</th>
+            <th scope="col">Apellidos</th>
             <th scope="col">Nombre de usuario</th>
             <th scope="col">Email</th>
             <th scope="col">Teléfono</th>
