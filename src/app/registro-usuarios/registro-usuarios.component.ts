@@ -23,13 +23,13 @@ export class RegistroUsuariosComponent implements OnInit {
   modal:string='modal';
 
   formularioRegistro = new FormGroup({
-    name: new FormControl('',
-      [
-        Validators.required,
-        Validators.minLength(3), 
-        Validators.maxLength(20), 
-        Validators.pattern(this.patternLetters)
-      ]),
+      name: new FormControl('',
+        [
+          Validators.required,
+          Validators.minLength(3), 
+          Validators.maxLength(20), 
+          Validators.pattern(this.patternLetters)
+        ]),
     lastname: new FormControl('',
       [
         Validators.required,
